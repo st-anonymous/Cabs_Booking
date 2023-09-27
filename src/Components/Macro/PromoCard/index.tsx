@@ -3,13 +3,15 @@ import {Typography} from '../../Micro/Typography';
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronUp, faChevronDown} from '@fortawesome/free-solid-svg-icons';
+import {Button} from '../../Micro/Button';
 
 export type PromoCardDataTypes = {
   header: string;
   promoCode: string;
-  validity: Date;
+  validity: string;
   terms: Array<string>;
-  onClick: () => void;
+  onClick: (promoCode: string) => void;
+  onApply: (promoCode: string) => void;
 };
 
 export type PromoCardTypes = {
@@ -19,33 +21,114 @@ export type PromoCardTypes = {
 
 export const PromoCard = (props: PromoCardTypes) => {
   const {expanded = false, data} = props;
-  const {header, promoCode, validity, terms, onClick} = data;
+  const {header, promoCode, validity, terms, onClick, onApply} = data;
 
   return (
-    <View>
-      <View>
-        <TouchableOpacity
+    <View
+      style={{
+        borderRadius: 0,
+        width: '90%',
+        alignSelf: 'center',
+        shadowColor: '#aaa',
+        elevation: 20,
+        paddingTop: 20,
+      }}>
+      <View
+        style={{
+          padding: 20,
+          borderRadius: 12,
+          width: '100%',
+          backgroundColor: 'white',
+        }}>
+        <View>
+          <TouchableOpacity
+            style={{
+              flexDirection: 'row',
+              alignSelf: 'center',
+              width: '100%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+            onPress={() => onClick(promoCode)}>
+            <Typography text={header} size={'large'} />
+            <FontAwesomeIcon
+              icon={expanded ? faChevronUp : faChevronDown}
+              size={15}
+              color={'black'}
+            />
+          </TouchableOpacity>
+        </View>
+        <View
           style={{
-            flexDirection: 'row',
-            alignSelf: 'center',
-            width: '80%',
-            justifyContent: 'space-between',
-          }}
-          onPress={onClick}>
-          <Typography text={header} size={'large'} />
-          <FontAwesomeIcon
-            icon={expanded ? faChevronUp : faChevronDown}
-            size={15}
-            color={'black'}
-          />
-        </TouchableOpacity>
-      </View>
-      <View>
-        {!expanded && (
-          <View>
-            <Typography text={terms} size={'small'} />
+            backgroundColor: '#DDD7FC',
+            borderRadius: 10,
+            padding: 8,
+            marginVertical: 10,
+            alignSelf: 'flex-start',
+          }}>
+          <View
+            style={{
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <Typography text={'Promo Code'} size={'small'} />
+            <View
+              style={{
+                padding: 2,
+                paddingHorizontal: 5,
+                marginLeft: 20,
+                backgroundColor: 'white',
+                borderRadius: 5,
+              }}>
+              <Typography text={promoCode} size={'small'} />
+            </View>
           </View>
-        )}
+        </View>
+        <View>
+          {expanded ? (
+            <View
+              style={{
+                justifyContent: 'flex-start',
+                alignItems: 'flex-start',
+              }}>
+              <Typography text={`Valid till ${validity}`} size={'small'} />
+            </View>
+          ) : (
+            <View
+              style={{
+                justifyContent: 'flex-start',
+              }}>
+              <Typography
+                text={`Terms & Conditions`}
+                size={'extra-small'}
+                textAlign="left"
+              />
+              {terms.map(term => {
+                return (
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      paddingHorizontal: 10,
+                    }}>
+                    <Typography text={'•'} size={'extra-small'} />
+                    <Typography
+                      text={term}
+                      size={'extra-small'}
+                      color={'black'}
+                      styleProps={{marginHorizontal: 10}}
+                    />
+                  </View>
+                );
+              })}
+              <Button
+                text={'Redeem'}
+                size={'medium'}
+                onClick={() => onApply(promoCode)}
+              />
+            </View>
+          )}
+        </View>
       </View>
     </View>
   );
