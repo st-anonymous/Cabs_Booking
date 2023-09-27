@@ -13,7 +13,7 @@ const App = () => {
   const Stack = createStackNavigator();
   return (
     <RecoilRoot>
-      <GestureHandlerRootView style={{flex: 1}}>
+      <GestureHandlerRootView style={{flex: 1, backgroundColor: 'white'}}>
         {/* <NavigationContainer>
         <SheetProvider>
           <Stack.Navigator
@@ -26,29 +26,6 @@ const App = () => {
           </Stack.Navigator>
         </SheetProvider>
       </NavigationContainer> */}
-        <View>
-          <Typography
-            text={`Welcome to Tony's company`}
-            size={'extra-large'}
-            bgColor="#E5CFF7"
-          />
-        </View>
-        <Button
-          text={'Continue'}
-          size={'small'}
-          onClick={() => console.log('Clicked')}
-        />
-        <PromoCard
-          data={{
-            header: 'get upto 25% off',
-            promoCode: 'ABCDE',
-            validity: new Date(2023, 9, 27),
-            terms: ['Nothing', 'here', 'is'],
-            onClick: () => {
-              console.log('Aaarha yaha');
-            },
-          }}
-        />
       </GestureHandlerRootView>
     </RecoilRoot>
   );
