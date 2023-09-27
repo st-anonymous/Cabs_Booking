@@ -1,7 +1,7 @@
 import {ReactNode} from 'react';
-import {View, ViewStyle} from 'react-native';
+import {DimensionValue, View, ViewStyle} from 'react-native';
 
-import {designBaseConfig} from '../../Design';
+import {designBaseConfig} from '../../../Design';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Typography} from '../Typography';
 
@@ -11,6 +11,7 @@ export type ButtonProps = {
   color?: string;
   bgColor?: string;
   onClick: () => void;
+  width?: DimensionValue;
   startIcon?: ReactNode;
   disabled?: false;
 };
@@ -22,6 +23,7 @@ export const Button = (props: ButtonProps) => {
     color = 'white',
     bgColor = designBaseConfig.color.primary,
     onClick,
+    width,
     startIcon,
     disabled,
   } = props;
@@ -29,16 +31,16 @@ export const Button = (props: ButtonProps) => {
   let styles: ViewStyle = {borderRadius: 36};
   switch (size) {
     case 'extra-small':
-      styles = {...styles, height: 30};
+      styles = {...styles, height: 30, width: width ? width : '25%'};
       break;
     case 'small':
-      styles = {...styles, height: 36, width: '50%'};
+      styles = {...styles, height: 36, width: width ? width : '35%'};
       break;
     case 'medium':
-      styles = {...styles, height: 48};
+      styles = {...styles, height: 48, width: width ? width : '50%'};
       break;
     case 'large':
-      styles = {...styles, height: 56};
+      styles = {...styles, height: 56, width: width ? width : '70%'};
       break;
   }
   styles = {
