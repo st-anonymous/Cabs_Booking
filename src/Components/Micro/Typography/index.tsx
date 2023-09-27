@@ -1,5 +1,5 @@
 import {Text, TextStyle} from 'react-native';
-import {designBaseConfig} from '../../Design';
+import {designBaseConfig} from '../../../Design';
 
 export type TypographyProps = {
   text: string;
