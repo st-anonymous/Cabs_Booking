@@ -25,10 +25,6 @@ export const PromoCard = (props: PromoCardTypes) => {
   const {expanded = false, data} = props;
   const {header, promoCode, validity, terms, onClick, onApply} = data;
 
-  useEffect(() => {
-    // console.log('Aaaaarha');
-  });
-
   return (
     <View
       style={{
@@ -130,7 +126,7 @@ export const PromoCard = (props: PromoCardTypes) => {
               })}
               <Button
                 text={'Redeem'}
-                size={'medium'}
+                size={'small'}
                 onClick={() => onApply(promoCode)}
               />
             </View>

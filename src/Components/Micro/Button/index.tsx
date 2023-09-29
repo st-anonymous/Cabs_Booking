@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import {DimensionValue, View, ViewStyle} from 'react-native';
+import {ColorValue, DimensionValue, View, ViewStyle} from 'react-native';
 
 import {designBaseConfig} from '../../../Design';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -8,8 +8,8 @@ import {Typography} from '../Typography';
 export type ButtonProps = {
   text: string;
   size: 'large' | 'medium' | 'small' | 'extra-small';
-  color?: string;
-  bgColor?: string;
+  color?: ColorValue;
+  bgColor?: ColorValue;
   onClick: () => void;
   width?: DimensionValue;
   startIcon?: ReactNode;
@@ -21,7 +21,7 @@ export const Button = (props: ButtonProps) => {
     text,
     size,
     color = 'white',
-    bgColor = designBaseConfig.color.primary,
+    bgColor = designBaseConfig.color.buttonBackground,
     onClick,
     width,
     startIcon,
@@ -37,10 +37,10 @@ export const Button = (props: ButtonProps) => {
       styles = {...styles, height: 36, width: width ? width : '35%'};
       break;
     case 'medium':
-      styles = {...styles, height: 48, width: width ? width : '50%'};
+      styles = {...styles, height: 38, width: width ? width : '50%'};
       break;
     case 'large':
-      styles = {...styles, height: 56, width: width ? width : '70%'};
+      styles = {...styles, height: 40, width: width ? width : '70%'};
       break;
   }
   styles = {
