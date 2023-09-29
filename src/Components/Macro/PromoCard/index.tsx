@@ -1,9 +1,11 @@
 import {TouchableOpacity, View} from 'react-native';
 import {Typography} from '../../Micro/Typography';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faChevronUp, faChevronDown} from '@fortawesome/free-solid-svg-icons';
 import {Button} from '../../Micro/Button';
+
+import {designBaseConfig} from '../../../Design';
 
 export type PromoCardDataTypes = {
   header: string;
@@ -23,20 +25,24 @@ export const PromoCard = (props: PromoCardTypes) => {
   const {expanded = false, data} = props;
   const {header, promoCode, validity, terms, onClick, onApply} = data;
 
+  useEffect(() => {
+    // console.log('Aaaaarha');
+  });
+
   return (
     <View
       style={{
         borderRadius: 0,
         width: '90%',
         alignSelf: 'center',
-        shadowColor: '#aaa',
+        shadowColor: '#999999',
         elevation: 20,
         paddingTop: 20,
       }}>
       <View
         style={{
           padding: 20,
-          borderRadius: 12,
+          borderRadius: 10,
           width: '100%',
           backgroundColor: 'white',
         }}>
@@ -54,7 +60,7 @@ export const PromoCard = (props: PromoCardTypes) => {
             <FontAwesomeIcon
               icon={expanded ? faChevronUp : faChevronDown}
               size={15}
-              color={'black'}
+              color={designBaseConfig.color.primary}
             />
           </TouchableOpacity>
         </View>
@@ -86,7 +92,7 @@ export const PromoCard = (props: PromoCardTypes) => {
           </View>
         </View>
         <View>
-          {expanded ? (
+          {!expanded ? (
             <View
               style={{
                 justifyContent: 'flex-start',
@@ -107,6 +113,7 @@ export const PromoCard = (props: PromoCardTypes) => {
               {terms.map(term => {
                 return (
                   <View
+                    key={Math.random()}
                     style={{
                       flexDirection: 'row',
                       paddingHorizontal: 10,
