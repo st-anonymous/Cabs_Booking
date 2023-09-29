@@ -70,7 +70,11 @@ export const Promotions = () => {
           marginVertical: 20,
         }}>
         <TouchableOpacity onPress={onBackPress}>
-          <FontAwesomeIcon icon={faArrowLeft} style={{marginHorizontal: 16}} />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            style={{marginHorizontal: 16}}
+            size={20}
+          />
         </TouchableOpacity>
         <Typography text={'Promotions'} size={'large'} color="black" />
       </View>

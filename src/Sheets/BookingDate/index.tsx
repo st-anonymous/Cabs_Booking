@@ -57,7 +57,11 @@ export const BookingDate = () => {
             alignItems: 'center',
             marginVertical: 20,
           }}>
-          <FontAwesomeIcon icon={faArrowLeft} style={{marginHorizontal: 16}} />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            style={{marginHorizontal: 16}}
+            size={20}
+          />
           <Typography text={'Pick-up time'} size={'large'} color="black" />
         </View>
       </View>
@@ -111,7 +115,7 @@ export const BookingDate = () => {
             />
           </View>
           <Divider />
-          <View style={{padding: 24}}>
+          <View style={{marginTop: 24, padding: 6}}>
             <Button
               text={'Confirm time'}
               size={'medium'}

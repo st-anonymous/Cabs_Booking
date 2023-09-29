@@ -1,6 +1,6 @@
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {Image, View} from 'react-native';
-import {faClose} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faClose} from '@fortawesome/free-solid-svg-icons';
 import {Typography} from '../../Components/Micro/Typography';
 import {BookingCard} from '../../Components/Macro/BookingCard';
 import {designBaseConfig} from '../../Design';
@@ -9,6 +9,21 @@ import {Divider} from '../../Components/Micro/Divider';
 export const Booking = () => {
   return (
     <View>
+      <View
+        style={{
+          height: 50,
+          width: 50,
+          borderRadius: 50,
+          backgroundColor: 'white',
+          position: 'absolute',
+          top: 10,
+          left: 10,
+          zIndex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <FontAwesomeIcon icon={faArrowLeft} size={20} />
+      </View>
       <View
         style={{
           flexDirection: 'row',
