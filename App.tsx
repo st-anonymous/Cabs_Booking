@@ -3,15 +3,17 @@ import {RecoilRoot} from 'recoil';
 import {NavigationContainer} from '@react-navigation/native';
 import {SheetProvider} from 'react-native-actions-sheet';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Text, View} from 'react-native';
-import {Typography} from './src/Components/Micro/Typography';
-import {Button} from './src/Components/Micro/Button';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {PromoCard} from './src/Components/Macro/PromoCard';
+import {registerSheet} from 'react-native-actions-sheet';
 import {Promotions} from './src/Screens/Promotions';
+import {Booking} from './src/Screens/Booking';
+import {BookingDate} from './src/Sheets/BookingDate';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
+
+  registerSheet('BookingDate', BookingDate);
+
   return (
     <RecoilRoot>
       <GestureHandlerRootView style={{flex: 1, backgroundColor: 'white'}}>
@@ -21,8 +23,8 @@ const App = () => {
               screenOptions={{
                 headerShown: false,
               }}>
+              <Stack.Screen name={'Booking'} component={Booking} />
               <Stack.Screen name={'Promotions'} component={Promotions} />
-              {/* <Stack.Screen name={''} component={} /> */}
             </Stack.Navigator>
           </SheetProvider>
         </NavigationContainer>

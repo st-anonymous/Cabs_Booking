@@ -1,4 +1,4 @@
-import {Text, TextStyle} from 'react-native';
+import {ColorValue, Text, TextStyle} from 'react-native';
 import {designBaseConfig} from '../../../Design';
 
 export type TypographyProps = {
@@ -12,8 +12,8 @@ export type TypographyProps = {
     | 'secondary'
     | 'secondaryBold'
     | 'secondaryLight';
-  color?: string;
-  bgColor?: string;
+  color?: ColorValue;
+  bgColor?: ColorValue;
   styleProps?: TextStyle;
 };
 

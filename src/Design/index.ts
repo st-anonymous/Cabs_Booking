@@ -2,6 +2,7 @@ export const designBaseConfig = {
   color: {
     primary: '#713ABE',
     primaryBackground: '#E5CFF7',
+    buttonBackground: '#736DFB',
   },
   text: {
     primary: 'SpaceGrotesk-Medium',

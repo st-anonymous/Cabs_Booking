@@ -2,15 +2,20 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {View} from 'react-native';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import {Typography} from '../../Components/Micro/Typography';
-
 import {promoCardData} from '../../Data/PromoCardData';
 import {PromoCard} from '../../Components/Macro/PromoCard';
 import {ScrollView} from 'react-native-actions-sheet';
 import {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useRecoilState} from 'recoil';
+import {BookingAtom} from '../../Data/AtomDefinitions';
+import {useNavigation} from '@react-navigation/native';
 
 export const Promotions = () => {
   const [expanded, setExpanded] = useState<any>();
+  const [bookingAtom, setBookingAtom] = useRecoilState(BookingAtom);
+
+  const navigation = useNavigation();
 
   useEffect(() => {
     const initExpanded: any = {};
@@ -43,10 +48,18 @@ export const Promotions = () => {
   };
 
   const onApply = (val: string) => {
-    console.log(val);
+    setBookingAtom(prev => {
+      return {
+        ...prev,
+        promoCode: val,
+      };
+    });
+    navigation.navigate('Booking');
   };
 
-  const onBackPress = () => {};
+  const onBackPress = () => {
+    navigation.navigate('Booking');
+  };
 
   return (
     <View>
@@ -54,7 +67,7 @@ export const Promotions = () => {
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          marginVertical: 16,
+          marginVertical: 20,
         }}>
         <TouchableOpacity onPress={onBackPress}>
           <FontAwesomeIcon icon={faArrowLeft} style={{marginHorizontal: 16}} />
